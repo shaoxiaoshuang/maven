@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射命名空间，dao的配置文件名称-->
+<mapper namespace="org.sxs.dao.SupplierMapper">
+
+    <!--查询 resultType：返回结果-->
+    <select id="all" resultType="org.sxs.pojo.Supplier">
+    select * from Supplier
+</select>
+
+    <!--id：添加名称，parameterType：参数类型-->
+    <insert id="add" parameterType="org.sxs.pojo.Supplier">
+        INSERT INTO`supplier` (`supplierId`, `supplierName`, `linkMan`, `linkTel`, `linkAddress`, `fax`, `describe`)
+        VALUES (#{supplierId}, #{supplierName}, #{linkMan}, #{linkTel}, #{linkAddress},#{fax}, #{describe})
+    </insert>
+
+    <!--修改-->
+    <update id="udate" parameterType="org.sxs.pojo.Supplier">
+        UPDATE `supplier` SET `supplierId`=#{supplierId}, `supplierName`=#{supplierName}, `linkMan`=#{linkMan}, `linkTel`=#{linkTel}, `linkAddress`=#{linkAddress}, `fax`=#{fax}, `describe`=#{describe}
+        WHERE `supplierId`=#{supplierId};
+    </update>
+
+    <!--删除 parameterType:根据删除条件的类型-->
+    <delete id="lete" parameterType="string">
+        delete from supplier WHERE `supplierId`=#{supplierId};
+    </delete>
+
+</mapper>

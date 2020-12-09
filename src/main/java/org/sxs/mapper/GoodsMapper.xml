@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射命名空间，dao的配置文件名称-->
+<mapper namespace="org.sxs.mapper.GoodsMapper">
+
+    <!--查询 resultType：返回结果-->
+    <select id="all" resultType="org.sxs.pojo.Goods">
+    select * from goods
+</select>
+
+    <!--id：添加名称，parameterType：参数类型-->
+    <insert id="add" parameterType="org.sxs.pojo.Goods">
+        INSERT INTO`goods` (`goodId`, `goodsName`, `goodsPrice`, `unit`, `supplierId`, `stock`)
+        VALUES (#{goodId}, #{goodsName},#{goodsPrice},#{unit}, #{supplierId},#{stock})
+    </insert>
+
+    <!--修改-->
+    <update id="udate" parameterType="org.sxs.pojo.Goods">
+        UPDATE `goods` SET `goodId`=#{goodId}, `goodsName`=#{goodsName}, `goodsPrice`=#{goodsPrice}, `unit`=#{unit}, `supplierId`=#{supplierId}, `stock`=#{stock}
+        WHERE (`goodId`=#{goodId});
+    </update>
+
+    <!--删除 parameterType:根据删除条件的类型-->
+    <delete id="lete" parameterType="string">
+        delete from goods WHERE (`goodId`=#{goodId});
+    </delete>
+
+</mapper>
